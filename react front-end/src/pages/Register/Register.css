@@ -1,0 +1,4 @@
+.registerElementDesign{
+    display: flex;
+    flex-direction: column;
+}
