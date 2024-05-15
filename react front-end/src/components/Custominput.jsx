@@ -9,7 +9,7 @@ export const CustomInput= ({
     value})=>{  // props, properties, propiedades, se reciben como un objeto
     return(
         <input className="customInputDesign"
-        trype={typeProp} 
+        type={typeProp} 
         name={nameProp}
         placeholder={placeholderProp}
         value= {value}

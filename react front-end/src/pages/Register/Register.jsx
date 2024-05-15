@@ -11,10 +11,12 @@ import { inputValidator } from "../../utils/validators";
 export const Register = () => {
 
     const [credentials, setCredentials] = useState({
-        email: "",
+        
         first_name: "",
         last_name: "",
-        password: ""
+        email: "",
+        password: "",
+        role_name: ""
     });
     const [msg, setMsg] = useState("")
 
@@ -31,23 +33,14 @@ export const Register = () => {
 
 
     const RegisterMe = async () => {
-        if (inputValidator(credentials.first_name, "first_name") && inputValidator(credentials.password, "password")){
-
+       // if (inputValidator(credentials.first_name, "first_name") && inputValidator(credentials.password, "password")){
             const answer = await registerNewUserCall(credentials);
-
-          setMsg(answer.data.message);
-
-
-        if (answer.data.success) {
-            setTimeout(() => {
-                navigate("/")
-            }, 2000);
-        }
-    }
-     else {
-            console.log("credenciales incorrectas, algun campo no esta bien introducido ");
-        }
-};
+        
+          
+            setMsg(answer.data.message)
+        console.log(answer);
+    };
+     
 
 
 
@@ -78,18 +71,19 @@ if (answer?.data.token) {
 
 return (
     <div className="login-container RegisterElementDesign">
-        {msg === "" ? <>
+        {msg === "" ? 
+        <>
             <CustomInput
                 typeProp={"text"}
-                nameProp={"first name"}
+                nameProp={"first_name"}
                 handlerProp={(e) => inputHandler(e)}
                 placeholderProp={"escribe tu primer nombre"}
             />
             <CustomInput
                 typeProp={"text"}
-                nameProp={"last name"}
+                nameProp={"last_name"}
                 handlerProp={(e) => inputHandler(e)}
-                placeholderProp={"escribe tu apellido nombre"}
+                placeholderProp={"escribe tu apellido "}
             />
             <CustomInput
                 typeProp={"email"}
@@ -103,6 +97,12 @@ return (
                 nameProp={"password"}
                 handlerProp={(e) => inputHandler(e)}
                 placeholderProp={"escribe el password"}
+            />
+            <CustomInput
+                typeProp={"int"}
+                nameProp={"role_name"}
+                handlerProp={(e) => inputHandler(e)}
+                placeholderProp={"escribe el rol"}
             />
 
             <ButtonC

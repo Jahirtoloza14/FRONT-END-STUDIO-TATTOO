@@ -1,25 +1,23 @@
 import axios from "axios";
 
 
-const API_URL = "http://localhost:3000/";
+const API_URL = "http://localhost:3000/api/";
 export const registerNewUserCall = async (credentials) => {
 
+  const res = await axios.post(`${API_URL}users/register`, credentials);
 
-
-  const res = await axios.post(`${API_URL}api/users/register`, credentials);
-
-  
   return res;
-}
+  
+};
 
 export const loginCall = async (credentials) => {
 
   
-  const res = await axios.post(`${API_URL}api/users/login`, credentials);
+  const res = await axios.post(`users/login`, credentials);
 
  
   return res;
-}
+};
 export const bringProfile = async (token) => {
   const config = {
     headers: {
