@@ -1,9 +1,11 @@
 import { Navigate,Route, Routes} from "react-router-dom";
 import {Login} from "../Login/Login";
-import {Home} from "../Home/Home"
+import  {Register}  from "../Register/Register";
+import {Home} from "../Home/Home";
+
 import React from 'react';
 import { Profile } from "../Profile/Profile";
-import { Register } from "../Register/Register";
+
 
 export const Body =()=>{
 return (
@@ -20,5 +22,6 @@ return (
     </Routes> 
     
     </>
-    );
-};
+
+    ); 
+}

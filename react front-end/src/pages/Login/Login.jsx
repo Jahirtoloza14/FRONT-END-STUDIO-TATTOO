@@ -5,6 +5,8 @@ import "./Login.css"
 import { useState, useEffect } from "react"
 import { loginCall } from "../../services/apiCalls";
 import { decodeToken } from "react-jwt";
+import { useDispatch } from "react-redux";
+import { login } from "../userSlice";
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -14,6 +16,8 @@ export const Login = () => {
     })
     const [msg, setMsg] = useState("")
     
+    const dispatch = useDispatch()
+
     const loginMe =  async() => {
         // esta sera la funcion que desencadenara el login
         
@@ -28,14 +32,17 @@ export const Login = () => {
                 decodificado: uDecodificado
 
             }
+            dispatch(login(passport))
+
+
             console.log(passport)
             // guardariamos passport
             sessionStorage.setItem("passport", JSON.stringify(passport))
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
-           /* setTimeout(() => {
-                navigate("/",{state: passport} )
-            }, 90000)*/
+            setTimeout(() => {
+                navigate("/profile",{state: passport} )
+            }, 3000)
         }
     }
     const inputHandler = (e) => {

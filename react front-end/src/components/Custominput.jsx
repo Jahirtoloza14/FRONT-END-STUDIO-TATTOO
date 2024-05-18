@@ -1,19 +1,21 @@
-
+import React from "react"
 import "./Custominput.css"
 export const CustomInput= ({
     typeProp, 
     nameProp, 
     placeholderProp, 
     handlerProp,
-    isDisable,
-    value})=>{  // props, properties, propiedades, se reciben como un objeto
-    return(
-        <input className="customInputDesign"
+    value,
+    isDisable
+})=>{  // props, properties, propiedades, se reciben como un objeto
+    return (
+        <input 
+        className="customInputDesign"
         type={typeProp} 
         name={nameProp}
         placeholder={placeholderProp}
         value= {value}
-        disable={isDisable}
+        disabled={isDisable}
         onChange= {(e)=> handlerProp(e)}
         
         >

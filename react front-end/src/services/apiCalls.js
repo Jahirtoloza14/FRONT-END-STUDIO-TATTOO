@@ -2,20 +2,22 @@ import axios from "axios";
 
 
 const API_URL = "http://localhost:3000/api/";
+
+
 export const registerNewUserCall = async (credentials) => {
 
   const res = await axios.post(`${API_URL}users/register`, credentials);
 
   return res;
-  
+
 };
 
 export const loginCall = async (credentials) => {
 
-  
-  const res = await axios.post(`users/login`, credentials);
+  console.log(credentials);
+  const res = await axios.post(`${API_URL}users/login`, credentials);
 
- 
+  console.log(res);
   return res;
 };
 export const bringProfile = async (token) => {
@@ -23,11 +25,8 @@ export const bringProfile = async (token) => {
     headers: {
       Autorization: `Bearer ${token}`
     }
-
   }
-
-  const res = await axios.get(`${API_URL}api/users/:id`, config);
-
+  const res = await axios.get(`${API_URL}users/profile`, config);
   return res.data;
 }
 
@@ -39,7 +38,7 @@ export const updateProfile = async (data, token) => {
     }
   }
 
-  const res = await axios.put(`${API_URL}api/users/profile`, data, config)
+  const res = await axios.put(`${API_URL}users/profile/update`, data, config)
 
 }
 
