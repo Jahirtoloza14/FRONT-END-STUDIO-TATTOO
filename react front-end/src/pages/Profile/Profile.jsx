@@ -3,13 +3,13 @@ import { bringProfile } from "../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { CustomInput } from "../../components/Custominput";
 import { inputValidator } from "../../utils/validators";
-import { getLoggedAmount, getUserData, resetCount } from "../userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import  {getUserData}  from "../userSlice";
 
 
-
-export const Profile = () => {
-
+export const Profile = () => {    
+    const myPassport = JSON.parse(sessionStorage.getItem("passport"))
+    const [UserBackUp, SetUserBackUp]= useState({});
     const [profileData, setProfileData,] = useState({
        
         first_name: "",
@@ -19,27 +19,18 @@ export const Profile = () => {
 
     })
 
-    const [profileBackup, setprofilebackup] = useState({
-        
-        first_name: "",
-        last_name: "",
-        email: "",
-        role_name: ""
-
-    })
-
-
+    
   
     const [errorMessage, setErrorMessage] = useState("")
+
     const [isEditing, setIsEditing] = useState(false)
 
-    const myPassport = JSON.parse(sessionStorage.getItem("passport"))
-    
-    const dispatch = useDispatch()    
 
     
-    const veces= useSelector(getLoggedAmount)
-    //const myPassport = useSelector(getUserData)
+   
+    
+   
+   const userData = useSelector(getUserData)
     
     const token = myPassport.token
     
@@ -55,10 +46,11 @@ export const Profile = () => {
     }
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            const myProfileData = await bringProfile(token)
 
-            setProfileData(myProfileData)
+        const fetchProfile = async () => {
+            const myProfileData = await bringProfile(userData.token)
+            SetUserBackUp(myProfileData.data)
+            setProfileData(myProfileData.data)
         }
         fetchProfile()
     }, [])
@@ -80,11 +72,7 @@ export const Profile = () => {
             console.log(error);
         }
     };
-    const resetLoggedCount = () =>{
     
-        console.log(veces);
-        
-    }
 
     return (
         <>
@@ -125,13 +113,14 @@ export const Profile = () => {
             />
             {isEditing ? (
                 <div className="button-container">
-                    <button onClick={() => updateProfileHandler()}>Guardar</button>
+                    <button onClick={() => updateProfileHandler(true)}>Guardar</button>
                     <button onClick={() => setIsEditing(flase)}>Cancelar</button>
                 </div>
             ) : (
-                <button onClick={() => resetLoggedCount()}>Modificar</button>
+                <button onClick={() => setIsEditing(true)}>Modificar</button>
             )}
 
         </>
     );
 };
+export default Profile

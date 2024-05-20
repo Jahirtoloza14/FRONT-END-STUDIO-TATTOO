@@ -13,11 +13,11 @@ export const userSlice = createSlice({
             id: "",
             role:""
         },
-        vecesLoggeado: 0
+      
     },
     reducers: {
         login: (state, action) => {
-            console.log(state.vecesLoggeado);
+       
             // hemos hecho un login. Tenemos un passport: {}
             //                                             token:"ey.reklskdfgd"
             //                                             decodificado : {
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
             return {
                 ...state,
                 ...action.payload,
-                vecesLoggeado: state.vecesLoggeado + 1
+              
             }
         },
 
@@ -42,22 +42,16 @@ export const userSlice = createSlice({
                     email: "",
                     id: ""
                 },
-                vecesLoggeado: state.vecesLoggeado 
+               
             }
         },
-        resetCount: (state, action) => {
-            return {
-                ...state,
-                vecesLoggeado: 0
-            }
-        }
     }
 })
-export const { login, logout, resetCount} = userSlice.actions
+export const { login, logout} = userSlice.actions;
 
-export const getUserData = (state) =>  state.user
-export const getLoggedAmount = (state) => state.user.vecesLoggeado
-export default userSlice.reducer
+export const getUserData = (state) =>  state.user;
+
+export default userSlice.reducer;
 
 
 

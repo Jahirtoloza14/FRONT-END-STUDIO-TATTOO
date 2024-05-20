@@ -17,16 +17,19 @@ export const loginCall = async (credentials) => {
   console.log(credentials);
   const res = await axios.post(`${API_URL}users/login`, credentials);
 
-  console.log(res);
+  console.log(res, "Login");
   return res;
+
 };
+
+
 export const bringProfile = async (token) => {
   const config = {
     headers: {
       Autorization: `Bearer ${token}`
     }
   }
-  const res = await axios.get(`${API_URL}users/profile`, config);
+  const res = await axios.get(`${API_URL}users/profile/`, config);
   return res.data;
 }
 

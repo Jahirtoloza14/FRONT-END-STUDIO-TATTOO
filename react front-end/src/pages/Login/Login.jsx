@@ -17,6 +17,16 @@ export const Login = () => {
     const [msg, setMsg] = useState("")
     
     const dispatch = useDispatch()
+    const inputHandler = (e) => {
+            //genero la funcion que bindea
+
+            setCredentials(
+                (prevState) => ({
+                    ...prevState,
+                    [e.target.name]: e.target.value,
+                })
+            )
+        }
 
     const loginMe =  async() => {
         // esta sera la funcion que desencadenara el login
@@ -37,7 +47,7 @@ export const Login = () => {
 
             console.log(passport)
             // guardariamos passport
-            sessionStorage.setItem("passport", JSON.stringify(passport))
+            //sessionStorage.setItem("passport", JSON.stringify(passport))
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
             setTimeout(() => {
@@ -45,16 +55,7 @@ export const Login = () => {
             }, 3000)
         }
     }
-    const inputHandler = (e) => {
-        //genero la funcion que bindea
-
-        setCredentials(
-            (prevState) => ({
-                ...prevState,
-                [e.target.name]: e.target.value,
-            })
-        )
-    }
+    
 
     return (
         <div className="login-container loginElementDesign">
