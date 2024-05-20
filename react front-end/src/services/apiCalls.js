@@ -31,6 +31,19 @@ export const bringProfile = async (token) => {
 }
 
 
+
+export const bringProfiles = async (token) => {
+  const config = {
+    headers: {
+      Autorization: `Bearer ${token}`
+    }
+  }
+  const res = await axios.get(`${API_URL}users/getall`, config);
+  return res.data;
+}
+
+
+
 export const updateProfile = async (data, token) => {
   const config = {
     headers: {

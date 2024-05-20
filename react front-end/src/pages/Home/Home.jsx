@@ -27,29 +27,15 @@ export const Home = () => {
 
     return (
         <>
-       <h1>Soy home</h1>
-       <h1>Vite + React</h1>
-       <h2>Este es el subtiitulo</h2>
-       <div className="card">
-        <button>Birng my profile</button>
-        <h3>LOGIN</h3>
-        <CustomInput
-        typeProp="email"
-        nameProp="email"
-        placeholderProp="introduce tu email"
-        handlerProp={inputHandler}
-        />
        
-        <CustomInput
-        typeProp="password"
-        nameProp="password"
-        placeholderProp=""
-        handlerProp={inputHandler}
-        />
-            <p>
-                Edit <code>src/App.jsx</code> and save to test HMR
-            </p>
-       </div>
+       <h1>Studio tattoo</h1>
+       <h2>Bienvenidos</h2>
+    
+        
+        
+      
+           
+       
 
        </>
     )
