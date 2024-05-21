@@ -1,4 +1,4 @@
-export const inputValidator = (input, field) => {
+/*export const inputValidator = (input, field) => {
    if (input === ""){
     return fase
    }
@@ -9,4 +9,4 @@ export const inputValidator = (input, field) => {
         return false
     }
     return false
-}
+}*/

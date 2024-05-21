@@ -5,9 +5,9 @@ import { getUserData } from "../pages/userSlice";
 const API_URL = "http://localhost:3000/api/";
 
 
-export const registerNewUserCall = async (credentials) => {
+export const registerNewUserCall = async (getUserData) => {
 
-  const res = await axios.post(`${API_URL}users/register`, credentials);
+  const res = await axios.post(`${API_URL}users/register`, getUserData);
 
   return res;
 

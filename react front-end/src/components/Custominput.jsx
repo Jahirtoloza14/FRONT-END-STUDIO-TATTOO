@@ -1,5 +1,7 @@
 import React from "react"
 import "./Custominput.css"
+
+
 export const CustomInput= ({
     typeProp, 
     nameProp, 
@@ -17,10 +19,9 @@ export const CustomInput= ({
         value= {value}
         disabled={isDisable}
         onChange= {(e)=> handlerProp(e)}
-        
-        >
-        </input>
-    )
-}
-
+        />
+       
+    );
+};
+export default CustomInput;
 // <custominput type="email" name="emailinput" placeholder="introduce tu email..."/>

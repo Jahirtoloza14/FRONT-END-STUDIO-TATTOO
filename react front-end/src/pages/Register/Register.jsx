@@ -1,7 +1,7 @@
 import { CustomInput } from "../../components/Custominput";
 import { ButtonC } from "../../components/ButtonC/ButtonC";
 import "./Register.css"
-import { inputValidator } from "../../utils/validators";
+//import { inputValidator } from "../../utils/validators";
 import { useState, useEffect } from "react";
 import { registerNewUserCall } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
@@ -119,7 +119,7 @@ export const Register = () => {
                             placeholderProp={"escribe el password"}
                         />
                           <CustomInput
-                            typeProp={"role_name"}
+                            typeProp={"text"}
                             nameProp={"role_name"}
                             handlerProp={(e) => inputHandler(e)}
                             placeholderProp={"escribe el role"}

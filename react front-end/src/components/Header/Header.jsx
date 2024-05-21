@@ -49,7 +49,7 @@ const myPassport = useSelector(getUserData)
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <NavDropdown title="Artistas" id="basic-nav-dropdown">
+            <NavDropdown title="Login" id="basic-nav-dropdown">
               <NavDropdown.Divider />
              {token ? (
               <NavDropdown.Item onClick={()=> logMeOut()} > 

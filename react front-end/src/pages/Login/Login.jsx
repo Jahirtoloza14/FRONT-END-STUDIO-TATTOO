@@ -37,7 +37,7 @@ export const Login = () => {
         if (anwser.data.token) {
             // decodificamos el token
             const uDecodificado = decodeToken(anwser.data.token);
-
+            console.log(uDecodificado);
             const passport = {
                 token: anwser.data.token,
                 decodificado: uDecodificado
@@ -48,7 +48,7 @@ export const Login = () => {
 
             console.log(passport)
             // guardariamos passport
-           //sessionStorage.setItem("passport", JSON.stringify(passport))
+           sessionStorage.setItem("passport", JSON.stringify(passport))
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
             setTimeout(() => {
