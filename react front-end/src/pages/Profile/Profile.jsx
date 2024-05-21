@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Profile = () => {    
        
-    const myPassport = JSON.parse(sessionStorage.getItem("passport"))
+    //const myPassport = JSON.parse(sessionStorage.getItem("passport"))
     const [userBackUp, setUserBackUp] = useState({
         first_name: "",
         last_name: "",
@@ -56,17 +56,18 @@ export const Profile = () => {
 
 
 
-    useEffect(() => {
-        setTimeout(() => {
-            const fetchProfile = async () => {                
+    useEffect(() => { 
+        
+        
+        
+        const fetchProfile = async () => {                
                    const myProfileData = await bringProfile(userData.token);                    
                    setProfileData(myProfileData.data)
                    setUserBackUp(myProfileData.data);
                                               
            }
            fetchProfile()
-             
-       }, 1000);
+        
         
     },[]);
 
@@ -101,7 +102,7 @@ export const Profile = () => {
                 nameProp={"first name"}
                 handlerProp={inputHandler}
                 placeholderProp={"first name"}
-                value={profileData.first_name}
+                valueProp={profileData.first_name}
                 isDisable={!isEditing}
 
             />
