@@ -10,14 +10,14 @@ export const userSlice = createSlice({
             first_name: "",
             last_name: "",
             email: "",
-            id: "",
-            role:""
+            user_id: "",
+            role_name:""
         },
       
     },
     reducers: {
         login: (state, action) => {
-       
+            console.log("login representando")
             // hemos hecho un login. Tenemos un passport: {}
             //                                             token:"ey.reklskdfgd"
             //                                             decodificado : {
@@ -40,7 +40,8 @@ export const userSlice = createSlice({
                     first_name: "",
                     last_name: "",
                     email: "",
-                    id: ""
+                    user_id: "",
+                    role_name:""
                 },
                
             }

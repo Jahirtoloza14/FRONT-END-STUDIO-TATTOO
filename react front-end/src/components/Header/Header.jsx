@@ -5,26 +5,39 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, logout } from '../../pages/userSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState} from "react"
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState} from "react"
+import { useLocation, useNavigate } from 'react-router-dom';
 import "./Header.css";
 
 
 
 function Header() {
+
+
+  const userData= useSelector(getUserData)
+
+  useEffect(()=>{
+    console.log(userData);
+
+  },[userData])
+
   //const [isLoggedIn, setIsLoggedIn] = useState(false)
   const dispatch = useDispatch()
 
-  const location = useLocation()
-  //console.log(location)
-  //console.log(location.pathname, "usted esta aqui")
+  const navigate = useNavigate();
+  
+const userName= userData.decodificado.userName
+console.log(
+  userName
+);
 
-
-  const myPassport = useSelector(getUserData)
+  
+const myPassport = useSelector(getUserData)
   const token = myPassport?.token;
 
   const logMeOut = ()=>{
     dispatch(logout())
+   
   }
 
 

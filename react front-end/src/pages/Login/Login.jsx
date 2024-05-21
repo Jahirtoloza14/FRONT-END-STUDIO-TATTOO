@@ -15,8 +15,9 @@ export const Login = () => {
         password: ""
     })
     const [msg, setMsg] = useState("")
-    
     const dispatch = useDispatch()
+    
+    
     const inputHandler = (e) => {
             //genero la funcion que bindea
 
@@ -47,7 +48,7 @@ export const Login = () => {
 
             console.log(passport)
             // guardariamos passport
-            //sessionStorage.setItem("passport", JSON.stringify(passport))
+           //sessionStorage.setItem("passport", JSON.stringify(passport))
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
             setTimeout(() => {

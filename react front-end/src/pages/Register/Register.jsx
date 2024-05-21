@@ -39,10 +39,7 @@ export const Register = () => {
 
 
     const RegisterMe = async () => {
-        if (inputValidator(credentials.first_name, "first_name") && inputValidator(credentials.password, "password")) {
-            const answer = await registerNewUserCall(credentials);
-
-
+        const answer = await registerNewUserCall(credentials);
             setMsg(answer.data.message)
             console.log(answer);
 
@@ -53,10 +50,16 @@ export const Register = () => {
                     navigate("/login");
                 }, 2000)
             }
+       
+      /*  if (inputValidator(credentials.first_name, "first_name") && inputValidator(credentials.password, "password") ) {
+            
+
+
+       
         }
         else {
             console.log("credenciales incorrectas, hay algun campo no esta bien intrducido");
-        };
+        };]*/
 
 
 
@@ -114,6 +117,12 @@ export const Register = () => {
                             nameProp={"password"}
                             handlerProp={(e) => inputHandler(e)}
                             placeholderProp={"escribe el password"}
+                        />
+                          <CustomInput
+                            typeProp={"role_name"}
+                            nameProp={"role_name"}
+                            handlerProp={(e) => inputHandler(e)}
+                            placeholderProp={"escribe el role"}
                         />
                      
 

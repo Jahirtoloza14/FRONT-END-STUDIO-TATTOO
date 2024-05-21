@@ -3,12 +3,14 @@ import { bringProfile } from "../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { CustomInput } from "../../components/Custominput";
 import { inputValidator } from "../../utils/validators";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import  {getUserData}  from "../userSlice";
+import { useNavigate } from 'react-router-dom';
 
 
 export const Profile = () => {    
     const myPassport = JSON.parse(sessionStorage.getItem("passport"))
+
     const [UserBackUp, SetUserBackUp]= useState({});
     const [profileData, setProfileData,] = useState({
        
@@ -19,7 +21,7 @@ export const Profile = () => {
 
     })
 
-    
+    const navigate = useNavigate();
   
     const [errorMessage, setErrorMessage] = useState("")
 
@@ -32,7 +34,7 @@ export const Profile = () => {
    
    const userData = useSelector(getUserData)
     
-    const token = myPassport.token
+   
     
 
 
@@ -46,14 +48,17 @@ export const Profile = () => {
     }
 
     useEffect(() => {
+      if(userData){
+        bringProfile(userData).then((myPassport)=>{
+            setProfileData(myPassport.data.data);
+        }).catch((error)=>{
+            console.log(error);
+        });
+      }else{
+      navigate("/login")}
 
-        const fetchProfile = async () => {
-            const myProfileData = await bringProfile(userData.token)
-            SetUserBackUp(myProfileData.data)
-            setProfileData(myProfileData.data)
-        }
-        fetchProfile()
-    }, [])
+        
+    },[userData,navigate]);
 
     useEffect(() => {
         console.log(profileData, "bringprofile");

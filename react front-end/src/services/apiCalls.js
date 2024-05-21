@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUserData } from "../pages/userSlice";
 
 
 const API_URL = "http://localhost:3000/api/";
@@ -24,15 +25,17 @@ export const loginCall = async (credentials) => {
 
 
 export const bringProfile = async (token) => {
-  const config = {
+  const config ={
     headers: {
-      Autorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`
     }
-  }
-  const res = await axios.get(`${API_URL}users/profile/`, config);
-  return res.data;
 }
 
+
+const res =  await axios.get(`${API_URL}users/profile`, config);
+
+return res
+};
 
 
 export const bringProfiles = async (token) => {
