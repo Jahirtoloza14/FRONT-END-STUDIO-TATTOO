@@ -27,9 +27,11 @@ export const Home = () => {
 
     return (
         <>
-       
-       <h1>Studio tattoo</h1>
+       <div>
+        <h1>Studio tattoo</h1>
        <h2>Bienvenidos</h2>
+       </div>
+       
     
         
         

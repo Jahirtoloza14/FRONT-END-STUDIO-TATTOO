@@ -4,13 +4,19 @@ import { useEffect, useState } from "react";
 import { CustomInput } from "../../components/Custominput";
 //import { inputValidator } from "../../utils/validators";
 import { useSelector } from "react-redux";
-import  {getUserData}  from "../userSlice";
+import { getUserData } from "../userSlice";
 import { useNavigate } from 'react-router-dom';
 
 
 export const Profile = () => {    
-       
-    //const myPassport = JSON.parse(sessionStorage.getItem("passport"))
+    const navigate = useNavigate();
+    const userData = useSelector(getUserData)
+    
+    const myPassport = JSON.parse(sessionStorage.getItem("passport"))
+    
+    
+    const [errorMessage, setErrorMessage] = useState("")
+    const [isEditing, setIsEditing] = useState(false)
     const [userBackUp, setUserBackUp] = useState({
         first_name: "",
         last_name: "",
@@ -18,32 +24,16 @@ export const Profile = () => {
         role_name: ""
 
     });
-   
+
     const [profileData, setProfileData,] = useState({
-       
         first_name: "",
         last_name: "",
         email: "",
         role_name: ""
+     
 
     })
-
-    const navigate = useNavigate();
-  
-    const [errorMessage, setErrorMessage] = useState("")
-
-    const [isEditing, setIsEditing] = useState(false)
-
-
-    
-   
-    
-   
-   const userData = useSelector(getUserData)
-    
-   
-    
-
+    console.log(profileData, "esto es profileData ");
 
 
     const inputHandler = (e) => {
@@ -54,95 +44,95 @@ export const Profile = () => {
 
     }
 
+    useEffect(() => {
+            const fetchProfile = async() => {
+            const myProfileData = await bringProfile(userData.token);
+            console.log(myProfileData, "seteando prifiledata");
+            setProfileData(myProfileData.data)
+            
+        }
+        fetchProfile()
 
 
-    useEffect(() => { 
-        
-        
-        
-        const fetchProfile = async () => {                
-                   const myProfileData = await bringProfile(userData.token);                    
-                   setProfileData(myProfileData.data)
-                   setUserBackUp(myProfileData.data);
-                                              
-           }
-           fetchProfile()
-        
-        
-    },[]);
+    }, []);
 
     useEffect(() => {
-        console.log(profileData, "bringprofile");
+        console.log(profileData, "aqui esta  profile data bringprofile ");
     }, [profileData])
-        ;
+    ;
+     if(profileData.role_name === "ADMIN"){
+        setTimeout(() => {
+            navigate("/admin",{state: userData} )
+        }, 3000)
+     }
 
-   const updateProfileHandler = () => {
-    /*    if (!inputValidator(profileData.first_name, "fist_name") || !inputValidator(profileData.email, "email")) {
-            console.log("nombre o email no validos")
-            setErrorMessage("no se pueden actualizar los datos")
-            return;
-        }}*/
-        try {
-            updateProfile(profileData, token)
+    
+
+    const updateProfileHandler = () => {
+       
+         try {     
+           /*
+        if (!inputValidator(profileData.first_name, "fist_name") || !inputValidator(profileData.email, "email")) {
+                console.log("nombre o email no validos")
+                setErrorMessage("no se pueden actualizar los datos")
+                return;
+            }*/
+            
+         updateProfile(profileData, token)
+            
         } catch (error) {
             console.log(error);
         }
-    ;
-    } 
+    }
 
+
+    
+   
     return (
         <>
-        
-
-       
-            
-                           
             <CustomInput
-                typeProp={"text"}
-                nameProp={"first name"}
-                handlerProp={inputHandler}
-                placeholderProp={"first name"}
-                valueProp={profileData.first_name}
-                isDisable={!isEditing}
+                type="text"
+                name="first_name"  
+                placeholder="First name"  
+                value={profileData.first_name}
+                handler={inputHandler}
+                disabled={!isEditing}
+            />
+            <CustomInput
+                type="text"
+                name="last_name"
+                placeholder="last name"
+                value= {profileData.last_name}
+                handler={inputHandler}                
+                disabled={!isEditing}
+
 
             />
             <CustomInput
-                typeProp={"text"}
-                nameProp={"last name"}
-                placeholderProp={"last name"}
-                value={profileData.last_name}
-                handlerProp={inputHandler} 
-                isDisable={!isEditing}
-            />
-            <CustomInput
-                typeProp={"email"}
-                nameProp={"email"}
-                handlerProp={inputHandler}
-                placeholderProp={"email"}
+                type="email"
+                name="email"
+                placeholder="email"   
                 value={profileData.email}
-                isDisable={!isEditing}
+                handler={inputHandler}
+                disabled={!isEditing}
+
+
 
             />
             <CustomInput
-                typeProp={"text"}
-                nameProp={"role name"}
-                handlerProp={inputHandler}
-                placeholderProp={"role"}
+                type="text"
+                name="role_name"    
+                placeholder="role"
                 value={profileData.role_name}
-                isDisable={!isEditing}
+                handler={inputHandler}
+                disabled={"disabled"}
+
 
             />
-
-
-           
-
-        
-
-            
 
             {isEditing ? (
                 <div className="button-container">
-                    <button onClick={() => updateProfileHandler(false)} >Guardar</button>
+                    <button onClick={() => updateProfileHandler(true)} >Guardar</button>
                     <button onClick={() => setErrorMessage(false)}>Cancelar</button>
                 </div>
             ) : (
@@ -151,5 +141,5 @@ export const Profile = () => {
 
         </>
     );
-};
+}; 
 export default Profile;

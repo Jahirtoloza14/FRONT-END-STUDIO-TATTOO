@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
 import "./Admin.css"
 import { bringProfiles } from "../../services/apiCalls"
-
-
+import { getUserData } from "../userSlice";
+import { useSelector } from "react-redux";
+import DataTable from 'react-data-table-component';
 
 export const Admin =() => {
+
+    const userData = useSelector(getUserData)
+    const [userBackUp, setUserBackUp] = useState({})
     const [adminData, setAdminData,] = useState({
-        id:"",
+        user_id:"",
         first_name: "",
         last_name: "",
         email: "",
@@ -15,7 +19,7 @@ export const Admin =() => {
     })
 
     const myPassport = JSON.parse(sessionStorage.getItem("passport"))
-    const token =myPassport.token
+    //const token =myPassport.token
 
 
     const inputHandler = (e) => {
@@ -26,8 +30,9 @@ export const Admin =() => {
     }
     useEffect(()=> {
         const fetchAdmin= async ()=> {
-            const myAdminData= await bringProfiles(token) 
-            setAdminData(myAdminData)
+            const myAdminData= await bringProfiles(userData.token) 
+            setAdminData(myAdminData.data)
+            setUserBackUp(myAdminData.data)
         }
         fetchAdmin()
     }, [])
@@ -37,108 +42,43 @@ export const Admin =() => {
         ;
 
 
-    const FilterTable = ({adminData}) => {
-
-        const [filterText, setFilterText] = useState('');
-
-
-        return (
-            <div>
-                <SearchBar 
-                filterText = {filterText}
-                onFilterTextChange={setFilterText}
-                />
-                <ProfilesTable 
-                 adminData= {adminData}
-                filterText={filterText}
-                
-                />
-            </div>
-
-        )
-
-    }
-    const IdRow =({id})=> {
-        return (
-            <tr>
-                <th colSpan="2">
-                    {id}
-                </th>
-            </tr>
-        )
-
-    }
-    const FirstNameRow =({first_name})=> {
-        return (
-            <tr>
-                <th colSpan="2">
-                    {first_name}
-                </th>
-            </tr>
-        )
-
-    }
-    const LastNameRow =({last_name})=> {
-        return (
-            <tr>
-                <th colSpan="2">
-                    {last_name_name}
-                </th>
-            </tr>
-        )
-
-    }
-    const RolesRow =({role_name})=> {
-        return (
-            <tr>
-                <th colSpan="2">
-                    {role_name}
-                </th>
-            </tr>
-        )
-
-    }
-    const UserTable = ({ users, isAdmin }) => {
-        if (!isAdmin) {
-          return <div>No tienes permiso para ver esta información.</div>;
-        }
-      
-        return (
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Role</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map(user => (
-                <React.Fragment key={user.id}>
-                  <IdRow id={user.id} />
-                  <FirstNameRow first_name={user.first_name} />
-                  <LastNameRow last_name={user.last_name} />
-                  <RolesRow role_name={user.role_name} />
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
-        );
-      };
-
-    const SearchBar =() =>({
-        filterText,
-        onFilterTextChange
-    })
-        return (
-            <form>
-            <input 
-            type="text"
-            value={filterText} placeholder="Buscar..."
-            onChange={(e)=>onFilterTextChange(e.target.value)}/>
-            </form>
-        )
     
-
+   const columns = [
+    {
+        name: "User id",
+        selector: row => row.adminData.user_id
+    },
+    {
+        name: "First Name",
+        selector: row => row.adminData.first_name,
+        sortable: true
+    },
+    {
+        name: "Last Name",
+        selector: row => row.adminData.last_name
+    },
+    {
+       name: "Email",
+       selector: row => row.adminData.email
+      
+    },
+    {
+        name: "Role Name",
+        selector: row => row.adminData.role_name
+    }
+]
+        return (
+            <>
+            <DataTable
+            columns={columns}
+            data={adminData}
+            selectableRows
+            pagination
+            paginationPerPage={5}
+            onSelectedRowsChange={data=> console.log(data)}
+            
+            
+            />
+            </>
+        )
 }

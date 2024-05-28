@@ -3,3 +3,13 @@
     background-color: blue;
     font-weight: bold;
 }
+#navbar{
+    background-color: coral;
+    display: flex;
+    flex-direction: column;
+    width: 500rem;
+    
+}
+.container2{
+    background-color: aqua;
+}

@@ -52,9 +52,12 @@ export const Login = () => {
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
             setTimeout(() => {
-                navigate("/profile",{state: passport} )
+                navigate("/admin",{state: passport} )
             }, 3000)
         }
+
+
+
     }
     
 
@@ -63,27 +66,26 @@ export const Login = () => {
             {msg === "" ? <>
 
             <CustomInput
-                typeProp={"email"}
-                nameProp={"email"}
-                handlerProp={(e) => inputHandler(e)}
-                placeholderProp={"escribe tu e-mail"}
+                typeP={"email"}
+                name={"email"}
+                handler={(e) => inputHandler(e)}
+                placeholder={"escribe tu e-mail"}
             />
 
             <CustomInput
-                typeProp={"password"}
-                nameProp={"password"}
-                handlerProp={(e) => inputHandler(e)}
-                placeholderProp={"escribe el password"}
+                type={"password"}
+                name={"password"}
+                handler={(e) => inputHandler(e)}
+                placeholder={"escribe el password"}
             />
             <ButtonC
                 title={"log me"}
                 className={"regularButtonClass"}
                 functionEmit={loginMe}
             />
-            </> : <div>{msg}</div>}
-            {<pre>{JSON.stringify(credentials,null,2)}</pre>}
+            </> 
+           : <div>{msg}</div>}
 
-           
-        </div>
+</div>
     )
 }

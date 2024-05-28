@@ -42,14 +42,46 @@ const myPassport = useSelector(getUserData)
 
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
+    <Navbar expand="lg" className="bg-body-tertiary" >
+      <Container id="navbar">
         <Navbar.Brand href="/">My studio tattoo {myPassport.vecesLogeado} </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <NavDropdown title="Login" id="basic-nav-dropdown">
+            <NavDropdown title="Admin" id="basic-nav-dropdown">
+              <NavDropdown.Divider />
+             {token ? (
+              <NavDropdown.Item onClick={()=> logMeOut()} > 
+              logout
+              </NavDropdown.Item>): 
+              ( <p> no hay token</p>)
+              }
+              <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
+               Login
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/register" className={location.pathname === "/register"? "elementTest": ""} > 
+               Register
+              </NavDropdown.Item>
+              
+            </NavDropdown>
+            <NavDropdown title="Artistas" id="basic-nav-dropdown">
+              <NavDropdown.Divider />
+             {token ? (
+              <NavDropdown.Item onClick={()=> logMeOut()} > 
+              logout
+              </NavDropdown.Item>): 
+              ( <p> no hay token</p>)
+              }
+              <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
+               Login
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/register" className={location.pathname === "/register"? "elementTest": ""} > 
+               Register
+              </NavDropdown.Item>
+              
+            </NavDropdown>
+            <NavDropdown title="Clientes" id="basic-nav-dropdown">
               <NavDropdown.Divider />
              {token ? (
               <NavDropdown.Item onClick={()=> logMeOut()} > 

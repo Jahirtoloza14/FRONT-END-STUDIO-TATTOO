@@ -94,35 +94,35 @@ export const Register = () => {
                 {msg === "" ?
                     <>
                         <CustomInput
-                            typeProp={"text"}
-                            nameProp={"first_name"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"escribe tu primer nombre"}
+                            type={"text"}
+                            name={"first_name"}
+                            handler={(e) => inputHandler(e)}
+                            placeholder={"escribe tu primer nombre"}
                         />
                         <CustomInput
-                            typeProp={"text"}
-                            nameProp={"last_name"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"escribe tu apellido "}
+                            type={"text"}
+                            name={"last_name"}
+                            handler={(e) => inputHandler(e)}
+                            placeholder={"escribe tu apellido "}
                         />
                         <CustomInput
-                            typeProp={"email"}
-                            nameProp={"email"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"escribe tu e-mail"}
+                            type={"email"}
+                            name={"email"}
+                            handler={(e) => inputHandler(e)}
+                            placeholder={"escribe tu e-mail"}
                         />
 
                         <CustomInput
-                            typeProp={"password"}
-                            nameProp={"password"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"escribe el password"}
+                            type={"password"}
+                            name={"password"}
+                            handler={(e) => inputHandler(e)}
+                            placeholder={"escribe el password"}
                         />
                           <CustomInput
-                            typeProp={"text"}
-                            nameProp={"role_name"}
-                            handlerProp={(e) => inputHandler(e)}
-                            placeholderProp={"escribe el role"}
+                            type={"text"}
+                            name={"role_name"}
+                            handler={(e) => inputHandler(e)}
+                            placeholder={"escribe el role"}
                         />
                      
 

@@ -33,7 +33,7 @@ export const bringProfile = async (token) => {
 
 
 const res =  await axios.get(`${API_URL}users/profile`, config);
-
+console.log(res, "profile");
 return res
 };
 
