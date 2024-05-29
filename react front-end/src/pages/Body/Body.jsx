@@ -5,7 +5,7 @@ import {Home} from "../Home/Home";
 import React from 'react';
 import { Profile } from "../Profile/Profile";
 import { Admin } from "../Admin/Admin";
-
+import { LoginAdmin } from "../Admin/LoginAdmin";
 
 export const Body =()=>{
 return (
@@ -18,6 +18,8 @@ return (
         <Route path="/register" element={<Register/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/admin" element={<Admin/>}/>
+        <Route path="/loginAdmin" element={<LoginAdmin/>}/>
+
 
 
     </Routes> 

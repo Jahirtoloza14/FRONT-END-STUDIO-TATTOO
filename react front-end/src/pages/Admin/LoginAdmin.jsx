@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { CustomInput } from "../../components/Custominput";
 import { ButtonC } from "../../components/ButtonC/ButtonC";
-import "./Login.css"
+import "./LoginAdmin.css"
 import { useState, useEffect } from "react"
 import { loginCall } from "../../services/apiCalls";
 import { decodeToken } from "react-jwt";
 import { useDispatch } from "react-redux";
 import { login } from "../userSlice";
 
-export const Login = () => {
+export const LoginAdmin = () => {
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState({
         email: "",
@@ -52,7 +52,7 @@ export const Login = () => {
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
             setTimeout(() => {
-                navigate("/profile",{state: passport} )
+                navigate("/admin",{state: passport} )
             }, 3000)
         }
 
