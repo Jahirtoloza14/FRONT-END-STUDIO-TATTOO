@@ -60,11 +60,7 @@ export const Profile = () => {
         console.log(profileData, "aqui esta  profile data bringprofile ");
     }, [profileData])
     ;
-     if(profileData.role_name === "ADMIN"){
-        setTimeout(() => {
-            navigate("/admin",{state: userData} )
-        }, 3000)
-     }
+     
 
     
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getUserData } from "../pages/userSlice";
+
 
 
 const API_URL = "http://localhost:3000/api/";
@@ -37,15 +37,18 @@ console.log(res, "profile");
 return res
 };
 
-
-export const bringProfiles = async (token) => {
-  const config = {
-    headers: {
-      Autorization: `Bearer ${token}`
-    }
+// get all users
+export const bringAllUsersCall = async (token) => {
+  const config ={
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
   }
-  const res = await axios.get(`${API_URL}users/getall`, config);
-  return res.data;
+ 
+  
+  const res =  await axios.get(`${API_URL}users/getall`, config);
+  
+  return res
 }
 
 
@@ -62,10 +65,20 @@ export const updateProfile = async (data, token) => {
 }
 
 
-export const bringAllCharacters = async () => {
-  const res = await axios.get("http://localhost:3000/api")
-  return res.data.results
+export const bringAllAppointments = async (token) => {
+  const config ={
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  }
+ 
+  
+  const res =  await axios.get(`${API_URL}appointments/get`, config);
+  
+  return res
 }
+
+
 
 
 // .get("url", headers(opcional))

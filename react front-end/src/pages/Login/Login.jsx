@@ -7,7 +7,6 @@ import { loginCall } from "../../services/apiCalls";
 import { decodeToken } from "react-jwt";
 import { useDispatch } from "react-redux";
 import { login } from "../userSlice";
-
 export const Login = () => {
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState({
@@ -53,7 +52,7 @@ export const Login = () => {
 
             setTimeout(() => {
                 navigate("/profile",{state: passport} )
-            }, 3000)
+            }, 1000)
         }
 
 

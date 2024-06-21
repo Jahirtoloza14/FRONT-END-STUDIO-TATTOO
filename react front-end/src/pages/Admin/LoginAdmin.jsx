@@ -10,6 +10,7 @@ import { login } from "../userSlice";
 
 export const LoginAdmin = () => {
     const navigate = useNavigate()
+
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
@@ -37,7 +38,7 @@ export const LoginAdmin = () => {
         if (anwser.data.token) {
             // decodificamos el token
             const uDecodificado = decodeToken(anwser.data.token);
-            console.log(uDecodificado);
+            console.log(uDecodificado, "token real");
             const passport = {
                 token: anwser.data.token,
                 decodificado: uDecodificado
@@ -45,18 +46,18 @@ export const LoginAdmin = () => {
             }
             dispatch(login(passport))
 
-
-            console.log(passport)
+        
+            console.log(passport,"tokens")
             // guardariamos passport
            sessionStorage.setItem("passport", JSON.stringify(passport))
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
             setTimeout(() => {
                 navigate("/admin",{state: passport} )
-            }, 3000)
+            }, 9000)
         }
 
-
+     
 
     }
     
