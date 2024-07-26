@@ -12,6 +12,22 @@ export const registerNewUserCall = async (getUserData) => {
   return res;
 
 };
+export const registerNewAdminCall = async (getUserData) => {
+
+  const res = await axios.post(`${API_URL}users/registerAdmin`, getUserData);
+
+  return res;
+
+
+};
+
+export const registerNewArtistCall = async (getUserData) => {
+
+  const res = await axios.post(`${API_URL}users/registerArtist`, getUserData);
+
+  return res;
+
+};
 
 export const loginCall = async (credentials) => {
 
@@ -64,6 +80,17 @@ export const updateProfile = async (data, token) => {
 
 }
 
+export const registerNewAppointmentCall = async (data) => {
+  try {
+      const response = await axios.post(`${API_URL}appointments/newAppointment`, data);
+      return response;
+  } catch (error) {
+      console.error('Error in registerNewAppointmentCall:', error.response ? error.response.data : error.message);
+      throw error;
+  }
+};
+
+
 
 export const bringAllAppointments = async (token) => {
   const config ={
@@ -78,7 +105,16 @@ export const bringAllAppointments = async (token) => {
   return res
 }
 
+export const editAppointmentCall = async (data, token, id) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
 
+  const res = await axios.put(`${baseURL}appointments/${id}`, data, config)
+  return res
+}
 
 
 // .get("url", headers(opcional))

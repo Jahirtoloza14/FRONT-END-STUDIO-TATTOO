@@ -1,17 +1,16 @@
 import { CustomInput } from "../../components/Custominput";
 import { ButtonC } from "../../components/ButtonC/ButtonC";
-import "./Register.css"
+import "./CreateArtist.css"
 import { useState, useEffect } from "react";
-import { registerNewUserCall } from "../../services/apiCalls";
+import { registerNewArtistCall } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
 import { login } from "../userSlice";
 
 
 
 
-export const Register = () => {
+export const RegisterArtist = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -38,7 +37,7 @@ export const Register = () => {
 
 
     const RegisterMe = async () => {
-        const answer = await registerNewUserCall(credentials);
+        const answer = await registerNewArtistCall(credentials);
             setMsg(answer.data.message)
             console.log(answer);
 
@@ -76,7 +75,7 @@ export const Register = () => {
         }*/
         return (
             <div className="register-container registerElementsDesign">
-                <h1>REGISTRATE COMO CLIENTE</h1>
+                 <h1>REGISTRATE COMO ARTISTA</h1>
                 {msg === "" ?
                     <>
                         <CustomInput
@@ -114,10 +113,8 @@ export const Register = () => {
                     </> : <div>{msg}</div>}
                 {/*<pre>{JSON.stringify(credentials,null,2)}</pre>*/}
 
-</div>
-            
-            
-        
+
+            </div>
         )
     
 };

@@ -21,7 +21,7 @@ export const Profile = () => {
         first_name: "",
         last_name: "",
         email: "",
-        role_name: ""
+        role: ""
 
     });
 
@@ -29,7 +29,7 @@ export const Profile = () => {
         first_name: "",
         last_name: "",
         email: "",
-        role_name: ""
+        role:""
      
 
     })
@@ -64,28 +64,20 @@ export const Profile = () => {
 
     
 
-    const updateProfileHandler = () => {
-       
-         try {     
-           /*
-        if (!inputValidator(profileData.first_name, "fist_name") || !inputValidator(profileData.email, "email")) {
-                console.log("nombre o email no validos")
-                setErrorMessage("no se pueden actualizar los datos")
-                return;
-            }*/
-            
-         updateProfile(profileData, token)
-            
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
 
     
    
     return (
         <>
+            
+            <CustomInput
+                type="text"
+                name="id"  
+                placeholder="ID"  
+                value={profileData.id}
+                handler={inputHandler}
+                disabled={!isEditing}
+            />
             <CustomInput
                 type="text"
                 name="first_name"  
@@ -115,26 +107,9 @@ export const Profile = () => {
 
 
             />
-            <CustomInput
-                type="text"
-                name="role_name"    
-                placeholder="role"
-                value={profileData.role_name}
-                handler={inputHandler}
-                disabled={"disabled"}
+            
 
-
-            />
-
-            {isEditing ? (
-                <div className="button-container">
-                    <button onClick={() => updateProfileHandler(true)} >Guardar</button>
-                    <button onClick={() => setErrorMessage(false)}>Cancelar</button>
-                </div>
-            ) : (
-                <button onClick={() => setIsEditing(true)}>Modificar</button>
-            )}
-
+          
         </>
     );
 }; 

@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState} from "react"
 import { useLocation, useNavigate } from 'react-router-dom';
 import "./Header.css";
+import { getAppointment } from '../../pages/appointmentSlice';
 
 
 
@@ -20,6 +21,19 @@ function Header() {
     console.log(userData);
 
   },[userData])
+ 
+  useEffect(()=>{
+    console.log(userData);
+
+  },[userData])
+
+  /*const appointmentData= useSelector(getAppointment)
+
+  useEffect(()=>{
+    console.log(appointmentData);
+
+  },[appointmentData])
+*/
 
   //const [isLoggedIn, setIsLoggedIn] = useState(false)
   const dispatch = useDispatch()
@@ -30,7 +44,11 @@ const userName= userData.decodificado.userName
 console.log(
   userName
 );
-
+/*const appointmentName= appointmentData.decodificado.appointmentName
+console.log(
+  appointmentName
+);
+*/
   
 const myPassport = useSelector(getUserData)
   const token = myPassport?.token;
@@ -42,52 +60,53 @@ const myPassport = useSelector(getUserData)
 
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" >
+    <Navbar expand="lg" className="bg-body-tertiary " >
       <Container id="navbar">
-        <Navbar.Brand href="/">My studio tattoo {myPassport.vecesLogeado} </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Brand href="/"> STUDIO TATTOO {myPassport.vecesLogeado} </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav " />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <NavDropdown title="Admin" id="basic-nav-dropdown">
+          <Nav className="me-auto" id="nv">
+            <Nav.Link href="/" id="nv">Home</Nav.Link>
+            <Nav.Link href="/createappointment" id="nv">Crear Cita</Nav.Link>
+            <NavDropdown title="Admin"  id="nv">
               <NavDropdown.Divider />
              {token ? (
               <NavDropdown.Item onClick={()=> logMeOut()} > 
               logout
               </NavDropdown.Item>): 
-              ( <p> no hay token</p>)
+              ( <p> Login </p>)
               }
               <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
                Login
               </NavDropdown.Item>
-              <NavDropdown.Item href="/register" className={location.pathname === "/register"? "elementTest": ""} > 
+              <NavDropdown.Item href="/createadmin" className={location.pathname === "/createadmin"? "elementTest": ""} > 
                Register
               </NavDropdown.Item>
               
             </NavDropdown>
-            <NavDropdown title="Artistas" id="basic-nav-dropdown">
+            <NavDropdown title="Artistas" id="nv">
               <NavDropdown.Divider />
              {token ? (
               <NavDropdown.Item onClick={()=> logMeOut()} > 
               logout
               </NavDropdown.Item>): 
-              ( <p> no hay token</p>)
+              ( <p> </p>)
               }
               <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
                Login
               </NavDropdown.Item>
-              <NavDropdown.Item href="/register" className={location.pathname === "/register"? "elementTest": ""} > 
+              <NavDropdown.Item href="/createartist" className={location.pathname === "/createartist"? "elementTest": ""} > 
                Register
               </NavDropdown.Item>
               
             </NavDropdown>
-            <NavDropdown title="Clientes" id="basic-nav-dropdown">
+            <NavDropdown title="Clientes" id="nv">
               <NavDropdown.Divider />
              {token ? (
               <NavDropdown.Item onClick={()=> logMeOut()} > 
               logout
               </NavDropdown.Item>): 
-              ( <p> no hay token</p>)
+              ( <p> </p>)
               }
               <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
                Login

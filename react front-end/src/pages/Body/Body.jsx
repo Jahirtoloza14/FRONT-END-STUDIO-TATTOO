@@ -6,6 +6,11 @@ import React from 'react';
 import { Profile } from "../Profile/Profile";
 import { Admin } from "../Admin/Admin";
 import { LoginAdmin } from "../Admin/LoginAdmin";
+import { RegisterAppointment } from "../CreateAppointment/CreateAppointment";
+import { RegisterArtist } from "../CreateArtist/CreateArtist";
+import { RegisterAdmin } from "../CreateAdmin/CreateAdmin";
+
+
 
 export const Body =()=>{
 return (
@@ -19,6 +24,12 @@ return (
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/loginAdmin" element={<LoginAdmin/>}/>
+        <Route path="/createappointment" element={<RegisterAppointment/>}/>
+        <Route path="/createartist" element={<RegisterArtist/>}/>
+        <Route path="/createadmin" element={<RegisterAdmin/>}/>
+
+
+
 
 
 

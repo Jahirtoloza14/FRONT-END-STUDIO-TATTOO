@@ -5,7 +5,7 @@ export const appointmentSlice = createSlice({
     initialState:  {
         //estado inicial
         appointment: {
-          title: 0,
+          title: "",
           user_id: "",
           artist_id:"",
           start_time:"",
@@ -14,11 +14,14 @@ export const appointmentSlice = createSlice({
         },
       },
     reducers: {
-        appointmentDetail: (state, action) => {
-            return action.payload
-
+        setAppointment: (state, action) => {
+            console.log("setAppointment representando")
+            return {
+                ...state,
+                ...action.payload
+            }
         }
-    }
+      }
 })
 export const { setAppointment } = appointmentSlice.actions;
 export const getAppointment = (state) => state.appointment

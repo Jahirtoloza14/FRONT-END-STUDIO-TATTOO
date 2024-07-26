@@ -1,15 +1,23 @@
 .elementTest{
-    color: rgb(255, 255, 255);
-    background-color: blue;
+    color: #000000;
+    background-color: rgb(223, 219, 219);
     font-weight: bold;
 }
 #navbar{
-    background-color: coral;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
-    width: 500rem;
-    
+    width: 600rem;
+   
+
 }
 .container2{
-    background-color: aqua;
+    background-color: rgb(9, 9, 9);
+}
+#nv{
+    margin-left: 100px;
+    margin-right: 7px;
+    margin-bottom: 3px;
+    margin-top: 6px;
+
 }

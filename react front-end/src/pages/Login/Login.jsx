@@ -62,6 +62,7 @@ export const Login = () => {
 
     return (
         <div className="login-container loginElementDesign">
+            <h1>INGRESA A TU CUENTA</h1>
             {msg === "" ? <>
 
             <CustomInput
