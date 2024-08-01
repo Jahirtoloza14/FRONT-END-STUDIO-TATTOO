@@ -43,7 +43,12 @@ En este proyecto he utlizado las siguientes tecnologias
 
 
 ## Contribución 💬
-Este proyecto es un ejercicio creativo y de diseño. Siéntete libre de contribuir, hacer sugerencias o realizar mejoras. ¡Diviértete experimentando con la apariencia de la consola Game Boy en la web!
+Este proyecto es público, y las contribuciones son bienvenidas. Si deseas contribuir, sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama para tu contribución.
+3. Realiza tus cambios y mejoras.
+4. Envía una pull request para revisión y fusión.
 
 
 ## Desarrollo Local 🔨
