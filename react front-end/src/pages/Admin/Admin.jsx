@@ -2,7 +2,6 @@ import "./Admin.css"
 
 import { useState, useEffect, useMemo, useCallback, StrictMode, useRef } from "react";
 import { CustomInput } from "../../components/Custominput";
-//import { inputValidator } from "../../utils/validators";
 import { useSelector } from "react-redux";
 import { getUserData } from "../userSlice";
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +29,6 @@ export const Admin = () => {
     const [adminDataAppointments, setAdminDataAppointments] = useState([
 
     ])
-    console.log(adminData, "esto es profileData ");
 
     const [userBackUp, setUserBackUp] = useState([])
 
@@ -38,7 +36,6 @@ export const Admin = () => {
     const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
     const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
     const [rowData, setRowData] = useState([]);
-    console.log(rowData, "DATOS DE ROW");
     const [columnDefs, setColumnDefs] = useState([
         { field: "id" },
         { field: "title" },
@@ -71,7 +68,6 @@ export const Admin = () => {
     }, []);
 
     useEffect(() => {
-        console.log(rowData, "aqui esta  appointment data de la otra tabla diferente");
     }, [rowData])
 
     const onCellValueChanged = useCallback(async (event) => {
@@ -87,7 +83,6 @@ export const Admin = () => {
     }, []);
 
     useEffect(() => {
-        console.log(adminDataAppointments, "aqui esta  appointment data bringprofile ");
     }, [adminDataAppointments]);
 
 

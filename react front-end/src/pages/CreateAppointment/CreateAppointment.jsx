@@ -1,7 +1,6 @@
 import { CustomInput } from "../../components/Custominput";
 import { ButtonC } from "../../components/ButtonC/ButtonC";
 import "./CreateAppointment.css";
-//import { inputValidator } from "../../utils/validators";
 import { useState, useEffect } from "react";
 import { registerNewAppointmentCall } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +44,7 @@ export const RegisterAppointment = () => {
     const RegisterMeAppoinment = async () => {
         const answer = await registerNewAppointmentCall(credentials);
         setMsg(answer.data.message)
-        console.log(answer, "cita creada");
+    
 
 
         /*   if (answer.data.success) {
@@ -62,7 +61,7 @@ export const RegisterAppointment = () => {
 
         <div className="register-container registerElementsDesign" >
             <h1>CREA TU CITA</h1>
-            
+
             {msg === "" ?
                 <>
 

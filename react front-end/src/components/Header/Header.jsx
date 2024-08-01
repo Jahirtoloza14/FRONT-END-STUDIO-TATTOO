@@ -5,57 +5,43 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, logout } from '../../pages/userSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState} from "react"
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect} from "react"
+import { useNavigate } from 'react-router-dom';
 import "./Header.css";
-import { getAppointment } from '../../pages/appointmentSlice';
+
 
 
 
 function Header() {
 
 
-  const userData= useSelector(getUserData)
+  const userData = useSelector(getUserData)
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(userData);
 
-  },[userData])
- 
-  useEffect(()=>{
+  }, [userData])
+
+  useEffect(() => {
     console.log(userData);
 
-  },[userData])
+  }, [userData])
 
-  /*const appointmentData= useSelector(getAppointment)
 
-  useEffect(()=>{
-    console.log(appointmentData);
-
-  },[appointmentData])
-*/
-
-  //const [isLoggedIn, setIsLoggedIn] = useState(false)
   const dispatch = useDispatch()
 
   const navigate = useNavigate();
-  
-const userName= userData.decodificado.userName
-console.log(
-  userName
-);
-/*const appointmentName= appointmentData.decodificado.appointmentName
-console.log(
-  appointmentName
-);
-*/
-  
-const myPassport = useSelector(getUserData)
+
+  const userName = userData.decodificado.userName
+
+
+
+  const myPassport = useSelector(getUserData)
   const token = myPassport?.token;
 
-  const logMeOut = ()=>{
+  const logMeOut = () => {
     dispatch(logout())
-   
+
   }
 
 
@@ -68,53 +54,53 @@ const myPassport = useSelector(getUserData)
           <Nav className="me-auto" id="nv">
             <Nav.Link href="/" id="nv">Home</Nav.Link>
             <Nav.Link href="/createappointment" id="nv">Crear Cita</Nav.Link>
-            <NavDropdown title="Admin"  id="nv">
+            <NavDropdown title="Admin" id="nv">
               <NavDropdown.Divider />
-             {token ? (
-              <NavDropdown.Item onClick={()=> logMeOut()} > 
-              logout
-              </NavDropdown.Item>): 
-              ( <p> Login </p>)
+              {token ? (
+                <NavDropdown.Item onClick={() => logMeOut()} >
+                  logout
+                </NavDropdown.Item>) :
+                (<p> Login </p>)
               }
-              <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
-               Login
+              <NavDropdown.Item href="/login" className={location.pathname === "/login" ? "elementTest" : ""}>
+                Login
               </NavDropdown.Item>
-              <NavDropdown.Item href="/createadmin" className={location.pathname === "/createadmin"? "elementTest": ""} > 
-               Register
+              <NavDropdown.Item href="/createadmin" className={location.pathname === "/createadmin" ? "elementTest" : ""} >
+                Register
               </NavDropdown.Item>
-              
+
             </NavDropdown>
             <NavDropdown title="Artistas" id="nv">
               <NavDropdown.Divider />
-             {token ? (
-              <NavDropdown.Item onClick={()=> logMeOut()} > 
-              logout
-              </NavDropdown.Item>): 
-              ( <p> </p>)
+              {token ? (
+                <NavDropdown.Item onClick={() => logMeOut()} >
+                  logout
+                </NavDropdown.Item>) :
+                (<p> </p>)
               }
-              <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
-               Login
+              <NavDropdown.Item href="/login" className={location.pathname === "/login" ? "elementTest" : ""}>
+                Login
               </NavDropdown.Item>
-              <NavDropdown.Item href="/createartist" className={location.pathname === "/createartist"? "elementTest": ""} > 
-               Register
+              <NavDropdown.Item href="/createartist" className={location.pathname === "/createartist" ? "elementTest" : ""} >
+                Register
               </NavDropdown.Item>
-              
+
             </NavDropdown>
             <NavDropdown title="Clientes" id="nv">
               <NavDropdown.Divider />
-             {token ? (
-              <NavDropdown.Item onClick={()=> logMeOut()} > 
-              logout
-              </NavDropdown.Item>): 
-              ( <p> </p>)
+              {token ? (
+                <NavDropdown.Item onClick={() => logMeOut()} >
+                  logout
+                </NavDropdown.Item>) :
+                (<p> </p>)
               }
-              <NavDropdown.Item href="/login" className= {location.pathname === "/login"? "elementTest" : ""}> 
-               Login
+              <NavDropdown.Item href="/login" className={location.pathname === "/login" ? "elementTest" : ""}>
+                Login
               </NavDropdown.Item>
-              <NavDropdown.Item href="/register" className={location.pathname === "/register"? "elementTest": ""} > 
-               Register
+              <NavDropdown.Item href="/register" className={location.pathname === "/register" ? "elementTest" : ""} >
+                Register
               </NavDropdown.Item>
-              
+
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

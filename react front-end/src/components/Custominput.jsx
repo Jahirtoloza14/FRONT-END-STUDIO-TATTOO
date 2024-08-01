@@ -24,4 +24,3 @@ export const CustomInput= ({
     );
 };
 export default CustomInput;
-// <custominput type="email" name="emailinput" placeholder="introduce tu email..."/>

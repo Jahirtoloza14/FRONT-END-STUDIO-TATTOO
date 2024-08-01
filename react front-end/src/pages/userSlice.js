@@ -11,9 +11,9 @@ export const userSlice = createSlice({
             last_name: "",
             email: "",
             user_id: "",
-            role_name:""
+            role_name: ""
         },
-      
+
     },
     reducers: {
         login: (state, action) => {
@@ -25,11 +25,11 @@ export const userSlice = createSlice({
             //                                             email: "jahir@hotmail.com" 
             //                                             }
 
-            
+
             return {
                 ...state,
                 ...action.payload,
-              
+
             }
         },
 
@@ -41,16 +41,16 @@ export const userSlice = createSlice({
                     last_name: "",
                     email: "",
                     user_id: "",
-                    role_name:""
+                    role_name: ""
                 },
-               
+
             }
         },
     }
 })
-export const { login, logout} = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 
-export const getUserData = (state) =>  state.user;
+export const getUserData = (state) => state.user;
 
 export default userSlice.reducer;
 

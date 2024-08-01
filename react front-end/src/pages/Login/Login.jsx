@@ -15,28 +15,27 @@ export const Login = () => {
     })
     const [msg, setMsg] = useState("")
     const dispatch = useDispatch()
-    
-    
+
+
     const inputHandler = (e) => {
-            //genero la funcion que bindea
+        //genero la funcion que bindea
 
-            setCredentials(
-                (prevState) => ({
-                    ...prevState,
-                    [e.target.name]: e.target.value,
-                })
-            )
-        }
+        setCredentials(
+            (prevState) => ({
+                ...prevState,
+                [e.target.name]: e.target.value,
+            })
+        )
+    }
 
-    const loginMe =  async() => {
+    const loginMe = async () => {
         // esta sera la funcion que desencadenara el login
-        
+
         const anwser = await loginCall(credentials)
 
         if (anwser.data.token) {
             // decodificamos el token
             const uDecodificado = decodeToken(anwser.data.token);
-            console.log(uDecodificado);
             const passport = {
                 token: anwser.data.token,
                 decodificado: uDecodificado
@@ -45,47 +44,47 @@ export const Login = () => {
             dispatch(login(passport))
 
 
-            console.log(passport)
+            
             // guardariamos passport
-           sessionStorage.setItem("passport", JSON.stringify(passport))
+            sessionStorage.setItem("passport", JSON.stringify(passport))
             setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
 
             setTimeout(() => {
-                navigate("/profile",{state: passport} )
+                navigate("/profile", { state: passport })
             }, 1000)
         }
 
 
 
     }
-    
+
 
     return (
         <div className="login-container loginElementDesign">
             <h1>INGRESA A TU CUENTA</h1>
             {msg === "" ? <>
 
-            <CustomInput
-                typeP={"email"}
-                name={"email"}
-                handler={(e) => inputHandler(e)}
-                placeholder={"escribe tu e-mail"}
-            />
+                <CustomInput
+                    typeP={"email"}
+                    name={"email"}
+                    handler={(e) => inputHandler(e)}
+                    placeholder={"escribe tu e-mail"}
+                />
 
-            <CustomInput
-                type={"password"}
-                name={"password"}
-                handler={(e) => inputHandler(e)}
-                placeholder={"escribe el password"}
-            />
-            <ButtonC
-                title={"log me"}
-                className={"regularButtonClass"}
-                functionEmit={loginMe}
-            />
-            </> 
-           : <div>{msg}</div>}
+                <CustomInput
+                    type={"password"}
+                    name={"password"}
+                    handler={(e) => inputHandler(e)}
+                    placeholder={"escribe el password"}
+                />
+                <ButtonC
+                    title={"log me"}
+                    className={"regularButtonClass"}
+                    functionEmit={loginMe}
+                />
+            </>
+                : <div>{msg}</div>}
 
-</div>
+        </div>
     )
 }
