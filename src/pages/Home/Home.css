@@ -1,0 +1,20 @@
+#name1{
+    font-size: 300px;
+    font-display: Flex;
+    display: flex;
+    flex-direction: column;
+    margin: 0%;
+    padding: 0%;
+}
+.name2{
+    margin: 10%;
+}
+.name3{
+    font-size: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 0%;
+    padding: 0%;
+}
+
+
