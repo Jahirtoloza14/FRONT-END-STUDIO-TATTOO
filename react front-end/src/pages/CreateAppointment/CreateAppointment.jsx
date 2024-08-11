@@ -150,7 +150,7 @@ export const RegisterAppointment = () => {
                             />
                         </Form.Group>
                         <ButtonC
-                            title={"send"}
+                            title={"Crear"}
                             className={"regularButtonClass"}
                             type="submit"
                             functionEmit={RegisterMeAppoinment}

@@ -39,6 +39,18 @@ En este proyecto he utlizado las siguientes tecnologias
 
 
 ## Capturas de Pantalla 📸
+![Inicio](./images/home.png)
+![Registro](./images/Register.png)
+![Login](./images/login.png)
+![Perfil](./images/profile.png)
+![Usuarios](./images/users.png)
+![Citas](./images/appointments.png)
+![Search](./images/search.png)
+
+
+
+
+
 
 
 

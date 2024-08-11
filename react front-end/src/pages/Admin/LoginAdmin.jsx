@@ -15,6 +15,9 @@ export const LoginAdmin = () => {
         email: "",
         password: ""
     })
+
+    
+
     const [msg, setMsg] = useState("")
     const dispatch = useDispatch()
 
@@ -63,7 +66,7 @@ export const LoginAdmin = () => {
     return (
         <div className="login-container loginElementDesign">
             {msg === "" ? <>
-
+                <h1>INGRESA A TU CUENTA</h1>
                 <CustomInput
                     typeP={"email"}
                     name={"email"}
@@ -78,7 +81,7 @@ export const LoginAdmin = () => {
                     placeholder={"escribe el password"}
                 />
                 <ButtonC
-                    title={"log me"}
+                    title={"login"}
                     className={"regularButtonClass"}
                     functionEmit={loginMe}
                 />

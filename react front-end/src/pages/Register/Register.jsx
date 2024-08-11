@@ -52,27 +52,7 @@ export const Register = () => {
 
     }
 
-    /* esta sera la funcion que desencadenara register
-    const answer = await registerNewUserCall(credentials);
-    console.log(answer)
     
-    if (answer?.data.token) {
-        // decodificamos el token
-        const uDecodificado = decodeToken(answer.data.token);
-    
-        const passport = {
-            token: answer.data.token,
-            decodificado: uDecodificado
-    
-        }
-        console.log(passport)
-    
-        setMsg(`${uDecodificado.name}, bienvenid@ de nuevo`)
-    
-        setTimeout(() => {
-            navigate("/")
-        }, 3000)
-    }*/
     return (
         <div className="register-container registerElementsDesign">
             <h1>REGISTRATE COMO CLIENTE</h1>
@@ -106,12 +86,12 @@ export const Register = () => {
 
 
                     <ButtonC
-                        title={"Register me"}
+                        title={"Register"}
                         className={"regularButtonClass"}
                         functionEmit={RegisterMe}
                     />
                 </> : <div>{msg}</div>}
-            {/*<pre>{JSON.stringify(credentials,null,2)}</pre>*/}
+            
 
         </div>
 

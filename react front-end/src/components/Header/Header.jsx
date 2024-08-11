@@ -46,7 +46,7 @@ function Header() {
 
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary " >
+    <Navbar expand="lg" className="bg-body-white " >
       <Container id="navbar">
         <Navbar.Brand href="/"> STUDIO TATTOO {myPassport.vecesLogeado} </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav " />
@@ -62,7 +62,7 @@ function Header() {
                 </NavDropdown.Item>) :
                 (<p> Login </p>)
               }
-              <NavDropdown.Item href="/login" className={location.pathname === "/login" ? "elementTest" : ""}>
+              <NavDropdown.Item href="/loginAdmin" className={location.pathname === "/login" ? "elementTest" : ""}>
                 Login
               </NavDropdown.Item>
               <NavDropdown.Item href="/createadmin" className={location.pathname === "/createadmin" ? "elementTest" : ""} >

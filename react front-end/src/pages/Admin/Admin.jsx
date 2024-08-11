@@ -1,12 +1,13 @@
 import "./Admin.css"
-
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import { useState, useEffect, useMemo, useCallback, StrictMode, useRef } from "react";
 import { CustomInput } from "../../components/Custominput";
 import { useSelector } from "react-redux";
 import { getUserData } from "../userSlice";
 import { useNavigate } from 'react-router-dom';
 import DataTable from "react-data-table-component";
-import { bringAllAppointments, bringAllUsersCall, editAppointmentCall } from "../../services/apiCalls";
+import { bringAllAppointments, bringAllUsersCall, editAppointmentCall, bringProfile } from "../../services/apiCalls";
 import { getAppointment } from "../appointmentSlice";
 import { AgGridReact } from "ag-grid-react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
@@ -29,6 +30,19 @@ export const Admin = () => {
     const [adminDataAppointments, setAdminDataAppointments] = useState([
 
     ])
+
+
+    const [profileData, setProfileData,] = useState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        role: ""
+
+
+    })
+
+    const [userBackUp2, setUserBackUp2] = useState([])
+
 
     const [userBackUp, setUserBackUp] = useState([])
 
@@ -129,12 +143,20 @@ export const Admin = () => {
     }
     // bring all users
     useEffect(() => {
-        const fetchProfile = async () => {
-            const myProfileData = await bringAllUsersCall(userData.token);
-            console.log(myProfileData, "seteando prifiledata");
-            setAdminData(myProfileData.data)
-            setUserBackUp(myProfileData.data)
 
+
+        const fetchProfile = async () => {
+
+            try {
+
+
+                const myProfileData = await bringAllUsersCall(userData.token);
+                console.log(myProfileData, "seteando prifiledata");
+                setAdminData(myProfileData.data)
+                setUserBackUp(myProfileData.data)
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         }
         fetchProfile()
 
@@ -147,10 +169,13 @@ export const Admin = () => {
     // bring all appointments
     useEffect(() => {
         const fetchAppointment = async () => {
-            const myData = await bringAllAppointments(userData.token);
-            console.log(myData, "seteando Appointmentsdata");
-            setAdminDataAppointments(myData.data)
-
+            try {
+                const myData = await bringAllAppointments(userData.token);
+                console.log(myData, "seteando Appointmentsdata");
+                setAdminDataAppointments(myData.data)
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
 
         }
         fetchAppointment()
@@ -164,6 +189,21 @@ export const Admin = () => {
 
 
 
+
+    // profile
+    useEffect(() => {
+        const fetchProfile = async () => {
+
+            const myProfileData = await bringProfile(userData.token);
+            setProfileData(myProfileData.data)
+
+            console.error("Error fetching data:", error);
+
+        }
+        fetchProfile()
+
+
+    }, []);
 
 
     const columns = [
@@ -185,7 +225,7 @@ export const Admin = () => {
         },
         {
             name: "Role Name",
-            selector: row => row.role_name
+            selector: row => row.role.name
         }
     ]
 
@@ -233,58 +273,111 @@ export const Admin = () => {
 
     return (
         <>
+            <Tabs
+                defaultActiveKey="home"
+                transition={false}
+                id="noanim-tab-example"
+                className="mb-3"
+            >
+                <Tab eventKey="home" title="Usuarios">
 
+                    <div >
+                        <h1>Usuarios</h1>
+                        <DataTable
+                            columns={columns}
+                            data={adminData}
+                            selectableRows
+                            pagination
+                            paginationPerPage={5}
 
+                            onSelectedRowsChange={data => console.log(data)}
+                        />
+                    </div>
 
-            <div >
-                <h1>Usuarios</h1>
-                <DataTable
-                    columns={columns}
-                    data={adminData}
-                    selectableRows
-                    pagination
-                    paginationPerPage={5}
+                </Tab>
+                <Tab eventKey="profile" title="Profile">
+                <h1>Perfil</h1>
+                    <div>ID:<CustomInput
+                        type="text"
+                        name="id"
 
-                    onSelectedRowsChange={data => console.log(data)}
-                />
-            </div>
-
-
-
-            <h1>CITAS</h1>
-            <div style={containerStyle}>
-                <div className="example-wrapper">
-                    <div className="example-header">
-
-                        <input
+                        placeholder="ID"
+                        value={profileData.id}
+                        handler={inputHandler}
+                        disabled={true}
+                    /></div>
+                    <div>Nombre:<CustomInput
+                        type="text"
+                        name="first_name"
+                        placeholder="First name"
+                        value={profileData.first_name}
+                        handler={inputHandler}
+                        disabled={true}
+                    /></div>
+                    <div>Apellido
+                        <CustomInput
                             type="text"
-                            id="filter-text-box"
-                            placeholder="Search..."
-                            onInput={onFilterTextBoxChanged}
-                        />
+                            name="last_name"
+                            placeholder="last name"
+                            value={profileData.last_name}
+                            handler={inputHandler}
+                            disabled={true}
 
 
+                        /></div>
+                    <div>Email:<CustomInput
+                        type="email"
+                        name="email"
+                        placeholder="email"
+                        value={profileData.email}
+                        handler={inputHandler}
+                        disabled={true}
+                    /></div>
+                </Tab>
+                <Tab eventKey="contact" title="Citas" className="wrapper">
+                    <h1>CITAS</h1>
+                    <div style={containerStyle}>
+                        <div className="example-wrapper">
+                            <div className="example-header">
+
+                                <input
+                                    type="text"
+                                    id="filter-text-box"
+                                    placeholder="Search..."
+                                    onInput={onFilterTextBoxChanged}
+                                />
+
+
+                            </div>
+
+
+
+
+                            <div
+                                style={gridStyle}
+                                className="ag-theme-quartz-dark"
+                            >
+                                <AgGridReact
+
+                                    ref={gridRef}
+                                    rowData={rowData}
+                                    columnDefs={columnDefs}
+                                    defaultColDef={defaultColDef}
+                                    /*editAppointment={editAppointment}*/
+                                    onCellValueChanged={onCellValueChanged}
+                                />
+                            </div>
+                        </div>
                     </div>
 
 
 
+                </Tab>
+            </Tabs>
 
-                    <div
-                        style={gridStyle}
-                        className="ag-theme-quartz-dark"
-                    >
-                        <AgGridReact
 
-                            ref={gridRef}
-                            rowData={rowData}
-                            columnDefs={columnDefs}
-                            defaultColDef={defaultColDef}
-                            /*editAppointment={editAppointment}*/
-                            onCellValueChanged={onCellValueChanged}
-                        />
-                    </div>
-                </div>
-            </div>
+
+
 
 
 

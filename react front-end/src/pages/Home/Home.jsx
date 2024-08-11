@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
@@ -29,13 +30,19 @@ export const Home = () => {
 
     return (
         <>
-            <div>
-                <h1>Bienvenidos</h1>
-            </div>
-            <Image src="giftattoo.gif" fluid />
 
-            <div>
-            </div>
+            <Card className="bg-dark text-white">
+      <Card.Img src="giftattoo.gif" alt="Card image" />
+      <Card.ImgOverlay>
+        <Card.Title>Bienvenidos</Card.Title>
+        <Card.Text>
+       Somo el mejor estudio de tatuajes del pais
+          Contamos con un staff de artistas especializados.
+        </Card.Text>
+        
+      </Card.ImgOverlay>
+    </Card>
+  
             <Container>
                 <Row>
                     <Col xs={12} md={18} >
