@@ -81,7 +81,7 @@ export const LoginAdmin = () => {
                     placeholder={"escribe el password"}
                 />
                 <ButtonC
-                    title={"log me"}
+                    title={"login"}
                     className={"regularButtonClass"}
                     functionEmit={loginMe}
                 />

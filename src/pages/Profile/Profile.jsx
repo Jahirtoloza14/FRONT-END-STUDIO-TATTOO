@@ -45,61 +45,61 @@ export const Profile = () => {
 
     useEffect(() => {
         const fetchProfile = async () => {
-           
+
             const myProfileData = await bringProfile(userData.token);
             setProfileData(myProfileData.data)
-    
+
             console.error("Error fetching data:", error);
-        
+
         }
         fetchProfile()
 
 
     }, []);
 
-  
-        ;
+
+    ;
 
     return (
         <>
-            <CustomInput
+            <div><h1>BIENVENIDO : </h1></div>
+            <h2>Perfil</h2>
+            <div>ID:<CustomInput
                 type="text"
                 name="id"
-              
-             placeholder="ID"
+
+                placeholder="ID"
                 value={profileData.id}
                 handler={inputHandler}
-                disabled={!isEditing}
-            />
-            <CustomInput
+                disabled={true}
+            /></div>
+            <div>Nombre:<CustomInput
                 type="text"
                 name="first_name"
                 placeholder="First name"
                 value={profileData.first_name}
                 handler={inputHandler}
-                disabled={!isEditing}
-            />
-            <CustomInput
-                type="text"
-                name="last_name"
-                placeholder="last name"
-                value={profileData.last_name}
-                handler={inputHandler}
-                disabled={!isEditing}
+                disabled={true}
+            /></div>
+            <div>Apellido
+                <CustomInput
+                    type="text"
+                    name="last_name"
+                    placeholder="last name"
+                    value={profileData.last_name}
+                    handler={inputHandler}
+                    disabled={true}
 
 
-            />
-            <CustomInput
+                /></div>
+            <div>Email:<CustomInput
                 type="email"
                 name="email"
                 placeholder="email"
                 value={profileData.email}
                 handler={inputHandler}
-                disabled={!isEditing}
-
-
-
-            />
+                disabled={true}
+            /></div>
 
 
 
