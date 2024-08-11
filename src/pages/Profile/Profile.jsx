@@ -45,27 +45,28 @@ export const Profile = () => {
 
     useEffect(() => {
         const fetchProfile = async () => {
+           
             const myProfileData = await bringProfile(userData.token);
             setProfileData(myProfileData.data)
-
+    
+            console.error("Error fetching data:", error);
+        
         }
         fetchProfile()
 
 
     }, []);
 
-    useEffect(() => {
-       
-    }, [profileData])
+  
         ;
 
     return (
         <>
-
             <CustomInput
                 type="text"
                 name="id"
-                placeholder="ID"
+              
+             placeholder="ID"
                 value={profileData.id}
                 handler={inputHandler}
                 disabled={!isEditing}
