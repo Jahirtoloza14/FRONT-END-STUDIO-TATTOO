@@ -105,6 +105,20 @@ export const bringAllAppointments = async (token) => {
   return res
 }
 
+export const bringClientAppointment = async (token) => {
+  const config ={
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  }
+ 
+  
+  const res =  await axios.get(`${API_URL}appointments/myappointment/appointment`, config);
+  
+  return res
+}
+
+
 export const editAppointmentCall = async (data, token, id) => {
   const config = {
     headers: {
