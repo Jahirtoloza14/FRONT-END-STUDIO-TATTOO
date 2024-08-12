@@ -5,8 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, logout } from '../../pages/userSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect} from "react"
-import { useNavigate } from 'react-router-dom';
+import { useEffect} from "react";
 import "./Header.css";
 
 
@@ -30,9 +29,7 @@ function Header() {
 
   const dispatch = useDispatch()
 
-  const navigate = useNavigate();
-
-  const userName = userData.decodificado.userName
+ 
 
 
 

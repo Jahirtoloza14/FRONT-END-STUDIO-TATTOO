@@ -22,14 +22,11 @@ export const Admin = () => {
 
     const userData = useSelector(getUserData)
     const appointmentsData = useSelector(getAppointment)
-    const myPassport = JSON.parse(sessionStorage.getItem("passport"))
-
+    
 
     const [adminData, setAdminData] = useState([])
     console.log(adminData, "esto es profileData ");
-    const [adminDataAppointments, setAdminDataAppointments] = useState([
-
-    ])
+    const [adminDataAppointments, setAdminDataAppointments] = useState([])
 
 
     const [profileData, setProfileData,] = useState({
@@ -99,22 +96,6 @@ export const Admin = () => {
     useEffect(() => {
     }, [adminDataAppointments]);
 
-
-
-
-    const editAppointment = async () => {
-        try {
-            await editAppointmentCall(
-                appointmentsData,
-                userData.token,
-                rowData.id
-            );
-            console.log("Cita editada");
-            setShow(false);
-        } catch (error) {
-            console.log("Error editando cita:" + error);
-        }
-    };
     // filtro de busqueda
 
     const onFilterTextBoxChanged = useCallback(() => {
@@ -225,50 +206,11 @@ export const Admin = () => {
         },
         {
             name: "Role Name",
-            selector: row => row.role_name
+            selector: row => row.role.name
         }
     ]
 
-    const columnsAppointments = [
-
-        {
-
-            name: "tittle",
-            selector: row => row.tittle
-
-        },
-        {
-
-            name: "user_id",
-            selector: row => row.user_id
-
-        },
-        {
-
-            name: "artist_id",
-            selector: row => row.artist_id
-
-        },
-        {
-
-            name: "start_time",
-            selector: row => row.start_time
-
-        },
-        {
-
-            name: "end_time",
-            selector: row => row.end_time
-
-        },
-        {
-
-            name: "location",
-            selector: row => row.location
-
-        },
-
-    ]
+   
 
 
     return (
@@ -363,7 +305,7 @@ export const Admin = () => {
                                     rowData={rowData}
                                     columnDefs={columnDefs}
                                     defaultColDef={defaultColDef}
-                                    /*editAppointment={editAppointment}*/
+                                 
                                     onCellValueChanged={onCellValueChanged}
                                 />
                             </div>
