@@ -43,7 +43,6 @@ INICIO
 ![Inicio](./images/home.png)
 REGISTRO
 ![Registro](./images/Register.png)
-
 LOGIN
 ![Login](./images/login.png)
 PERFIL
