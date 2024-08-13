@@ -39,13 +39,21 @@ En este proyecto he utlizado las siguientes tecnologias
 
 
 ## Capturas de Pantalla 📸
+INICIO
 ![Inicio](./images/home.png)
+REGISTRO
 ![Registro](./images/Register.png)
+LOGIN
 ![Login](./images/login.png)
+PERFIL
 ![Perfil](./images/profile.png)
+USUARIOS COMO ADMINISTRADOR
 ![Usuarios](./images/users.png)
+CITAS COMO ADMINISTRADOR
 ![Citas](./images/appointments.png)
+FILTRO DE BUSQUEDA
 ![Search](./images/search.png)
+VISTA DE CITA DESDE UN USUARIO LOGEADO
 ![Cita propia de usuario](./images/userappointment.png)
 
 
