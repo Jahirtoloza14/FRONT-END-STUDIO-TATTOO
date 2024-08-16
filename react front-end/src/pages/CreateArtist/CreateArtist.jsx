@@ -1,7 +1,7 @@
 import { CustomInput } from "../../components/Custominput";
 import { ButtonC } from "../../components/ButtonC/ButtonC";
 import "./CreateArtist.css"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { registerNewArtistCall } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -91,8 +91,6 @@ export const RegisterArtist = () => {
                     />
                 </> : <div>{msg}</div>}
           
-
-
         </div>
     )
 

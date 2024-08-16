@@ -8,22 +8,14 @@ import Col from 'react-bootstrap/Col';
 import "./Home.css"
 export const Home = () => {
     const [count, setCount] = useState(0);
-    const [inputData, setInputData] = useState("");
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
     });
 
-    const inputHandler = (event) => {
-        setCredentials((prevState) => ({
-            ...prevState,
-            [event.target.name]: event.target.value
-        }));
-    };
 
     //useEffects
     useEffect(() => { }, [count]);
-
     useEffect(() => {
     }, [credentials]);
 
@@ -42,7 +34,6 @@ export const Home = () => {
         
       </Card.ImgOverlay>
     </Card>
-  
             <Container>
                 <Row>
                     <Col xs={12} md={18} >
@@ -61,15 +52,6 @@ export const Home = () => {
 
                 </Row>
             </Container>
-
-
-
-
-
-
-
-
-
         </>
     )
 }

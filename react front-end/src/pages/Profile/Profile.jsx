@@ -4,7 +4,6 @@ import { useEffect, useState, useMemo, useRef } from "react";
 import { CustomInput } from "../../components/Custominput";
 import { useSelector } from "react-redux";
 import { getUserData } from "../userSlice";
-import { useNavigate } from 'react-router-dom';
 import { AgGridReact } from "ag-grid-react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { ModuleRegistry } from "@ag-grid-community/core";
@@ -15,14 +14,9 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 export const Profile = () => {
-    const navigate = useNavigate();
     const userData = useSelector(getUserData)
 
-    const myPassport = JSON.parse(sessionStorage.getItem("passport"))
 
-
-    const [errorMessage, setErrorMessage] = useState("")
-    
 
     const [profileData, setProfileData,] = useState({
         first_name: "",
@@ -49,14 +43,6 @@ export const Profile = () => {
     ]);
 
 
-
-    const inputHandler = (e) => {
-        setProfileData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-
-    }
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -87,7 +73,6 @@ export const Profile = () => {
 
     }, []);
 
-    console.log(rowData, "cita de usuario")
 
     return (
         <>
@@ -96,10 +81,8 @@ export const Profile = () => {
             <div>ID:<CustomInput
                 type="text"
                 name="id"
-
                 placeholder="ID"
                 value={profileData.id}
-                handler={inputHandler}
                 disabled={true}
             /></div>
             <div>Nombre:<CustomInput
@@ -107,7 +90,6 @@ export const Profile = () => {
                 name="first_name"
                 placeholder="First name"
                 value={profileData.first_name}
-                handler={inputHandler}
                 disabled={true}
             /></div>
             <div>Apellido
@@ -116,7 +98,6 @@ export const Profile = () => {
                     name="last_name"
                     placeholder="last name"
                     value={profileData.last_name}
-                    handler={inputHandler}
                     disabled={true}
 
 
@@ -126,16 +107,12 @@ export const Profile = () => {
                 name="email"
                 placeholder="email"
                 value={profileData.email}
-                handler={inputHandler}
                 disabled={true}
             /></div>
 
             <h2>Cita</h2>
             <div style={containerStyle}>
                 <div className="example-wrapper">
-                    
-
-
                     <div
                         style={gridStyle}
                         className="ag-theme-quartz-dark"
@@ -145,18 +122,11 @@ export const Profile = () => {
                             ref={gridRef}
                             rowData={rowData}
                             columnDefs={columnDefs}
-                            
-
-                           
                         />
                     </div>
                 </div>
             </div>
 
-            
-
-
-                   
         </>
     );
 };

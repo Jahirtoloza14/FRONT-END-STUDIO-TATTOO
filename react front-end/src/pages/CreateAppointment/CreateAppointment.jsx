@@ -1,4 +1,3 @@
-import { CustomInput } from "../../components/Custominput";
 import { ButtonC } from "../../components/ButtonC/ButtonC";
 import "./CreateAppointment.css";
 import { useState, useEffect } from "react";
@@ -15,8 +14,6 @@ import Row from 'react-bootstrap/Row';
 
 export const RegisterAppointment = () => {
     const userData = useSelector(getUserData)
-    const navigate = useNavigate();
-    const dispatch = useDispatch()
     const [credentials, setCredentials] = useState({
 
         tittle: "",
@@ -47,14 +44,14 @@ export const RegisterAppointment = () => {
     
 
 
-        /*   if (answer.data.success) {
+           if (answer.data.success) {
                dispatch(login(answer.data,token));
                setTimeout(() => {
                    navigate("/login");
-               }, 2000)
+               }, 1000)
            }
-     
-*/
+ 
+
     }
 
     return (
